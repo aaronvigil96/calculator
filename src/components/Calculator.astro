@@ -53,16 +53,16 @@
     const iva = document.querySelector('#select_iva');
     const product = document.querySelector('#product');
     const dolar = document.querySelector('#dolar');
-    let p = document.querySelector('p');
+    let p:any = document.querySelector('p');
 
     form?.addEventListener('submit', e => {
         e.preventDefault();
 
-        let total;
-        let valueIva;
-        let valueMargin;
+        let total: any;
+        let valueIva: any
+        let valueMargin: any
 
-        switch(iva.value){
+        switch((iva as HTMLInputElement).value){
             case "21%":
                 valueIva = 1.21;
                 break;
@@ -74,7 +74,7 @@
                 break; 
         }
 
-        switch(margin.value){
+        switch((margin as HTMLInputElement).value){
             case "10%":
                 valueMargin = 1.10;
                 break;
@@ -107,7 +107,7 @@
                 break;
         }
 
-        total = ((Number(product.value) * valueIva) * valueMargin) * Number(dolar.value);
+        total = ((Number((product as HTMLInputElement).value) * valueIva) * valueMargin) * Number((dolar as HTMLInputElement).value);
 
         p.textContent = "$" + total;
 
