@@ -1,0 +1,118 @@
+---
+
+---
+
+<form class="mx-auto flex flex-col gap-3 bg-slate-400 max-w-max p-4 rounded-md">
+
+    <label>
+        Precio dolar
+        <input type="number" id="dolar" required min="1">
+    </label>
+
+    <label>
+        Precio producto 
+        <input type="number" id="product" required min="1">
+    </label>
+
+    <label>
+        Ingresá el margen
+        <select name="margin" id="select_margin">
+            <option>10%</option>
+            <option>20%</option>
+            <option>30%</option>
+            <option>40%</option>
+            <option>50%</option>
+            <option>60%</option>
+            <option>70%</option>
+            <option>80%</option>
+            <option>90%</option>
+            <option>100%</option>
+        </select>
+    </label>
+
+    <label>
+        Ingresa el Iva
+        <select name="iva" id="select_iva">
+            <option>21%</option>
+            <option>10.5%</option>
+            <option>Excento</option>
+        </select>
+    </label>
+
+    <button class="max-w-max p-2 bg-slate-200 rounded-md text-black">
+        Mostrar
+    </button>
+
+    <p class="text-green-800 text-3xl"></p>
+</form>
+
+<script>
+
+    const form = document.querySelector('form');
+    const margin = document.querySelector('#select_margin');
+    const iva = document.querySelector('#select_iva');
+    const product = document.querySelector('#product');
+    const dolar = document.querySelector('#dolar');
+    let p = document.querySelector('p');
+
+    form?.addEventListener('submit', e => {
+        e.preventDefault();
+
+        let total;
+        let valueIva;
+        let valueMargin;
+
+        switch(iva.value){
+            case "21%":
+                valueIva = 1.21;
+                break;
+            case "10.5%":
+                valueIva = 1.105;
+                break;
+            case "Excento":
+                valueIva = 1;
+                break; 
+        }
+
+        switch(margin.value){
+            case "10%":
+                valueMargin = 1.10;
+                break;
+            case "20%":
+                valueMargin = 1.20;
+                break;
+            case "30%":
+                valueMargin = 1.30;
+                break;
+            case "40%":
+                valueMargin = 1.40;
+                break;
+            case "50%":
+                valueMargin = 1.50;
+                break;
+            case "60%":
+                valueMargin = 1.60;
+                break;
+            case "70%":
+                valueMargin = 1.70;
+                break;
+            case "80%":
+                valueMargin = 1.80;
+                break;
+            case "90%":
+                valueMargin = 1.90;
+                break;
+            case "100%":
+                valueMargin = 2;
+                break;
+        }
+
+        total = ((Number(product.value) * valueIva) * valueMargin) * Number(dolar.value);
+
+        p.textContent = "$" + total;
+
+        setTimeout(() => {
+            p.textContent = "";
+        }, 6000);
+    });
+</script>
